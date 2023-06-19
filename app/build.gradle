@@ -1,0 +1,132 @@
+/**
+ * el build gradle da ely mwgod gowa el app module (ana 2a2sod lama tft7 mn project msh mn Android) w khoud balak de hyt3mlha applying gowa el app module bas
+ * y3ni 2a2sod eno ay 7aga gowa hna de htb2a btkhous el app module bas enma law 2t3mal ay module tani yb2a ely gowa hna msh hysm3 (3lshan ana 2oltlk eno da khas bas bl module da bas.
+ *
+ */
+plugins {
+    // el plugins ely m3mola hna da m3nah enha tkhous el application kolo w law m3mola fl 2 yb2a 3ade bardo
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+
+android {
+    namespace 'com.khales.gradle'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.khales.gradle"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    /*
+    ay application by default byb2a leeh two build types:
+    1- release el noskha de ely btnzel 3ala el profuction 3ala google play
+    2- debug de for testing
+
+     */
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+
+        }
+    }
+
+
+    /***
+     el 2 dol ( compileOptions, kotlinOptions ) byt7dd fehom el JVM w el java version.... bm3na eh msh fahem awi
+     h2olk el kotlin code ely enta btktbo aw el java code da byt7awel le byte code w el byte code ely byt7awel da byb2a m3molo compile 3ala asas el java version
+     ely enta m7ddo gowa el code y3ni mn el akher for example law ana m7dd  jvmTarget = '1.8' mynf3sh lama howa y7awel el code bta3i le byte code yla2i fe 7agat akbar mn "1.8"
+
+
+     fa 3ala sabel el msal hla2i el lamda expression mwgoda fl 1.8 w msh hla2eha fl versions ely 2a2l l2n hia dmn el JVM 1.8
+
+
+     khoud balak m3a ekhtiark lel JVM version lazem ykon monaseb m3a el minSDK 3lshan el donia tzbot (y3ni mynf3sh ageb JVM level 2olayel m3a minSDK 3ali)
+    */
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+
+    /*
+        khoud balak eno klmt implmentation da lel app kolo eza kanet b2a test aw espressotest aw release aw debug hia sh3'ala 3ala kolo y3ni momkn takhoud
+        el libraries ely btstkhdmha lel unittest aw el espresso w hia m3mola w m7tota kol wa7ed fl mkan bta3o enma enta momkn tshelo w tbdlo b implementation''
+        w htt3'yar w el donia htzbot 3ade bas da moushkla akeed 3lshan mwdo3 el sizing lama tstkhdm el 7aga fe mkan wa7ed w mo7dd 3'er lama tstkhdm 7aga le whole project
+        w kman enta msh btstkhdmha fl project kolo fa da yo3tbar wasting lel memory w el resources
+    */
+    //implementation''
+
+
+    /**
+     * khoud balak de msh hynfa3 tt7at mn 3'er el ****maven { url "https://jitpack.io" }**** ht2oli de tyb htt7at feen h2olk de htt7at fl settings.gradle
+     * w htt7at fl mkan ely ykhous el dependencies (dependencyResolutionManagement) msh el ykhous el plugins (pluginManagement)
+     */
+    implementation 'com.github.azmiradi:zoma-number-keyboard:2.0.8'
+
+
+    /*
+    de enta btskhdmha lel package aw test bta3t el test (ely feha unit test **junit**) bas 2a2sod eno msh btostkhdam lel espresso test (UI - Test)
+    el folder lama btgebo mn el project htla2eh esmo:
+    test [unitTest]
+    */
+    testImplementation 'junit:junit:4.13.2'
+
+
+    /*
+    de b2a bnstkhdmha lel mkan el test ely bn3mel fe el UI test (Espresso test) fa tani de btsm3 fl mkan da bas
+    */
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    /*
+    ana hstkhdem el implmentation de debugImplementation fl debug bas
+    */
+    //debugImplementation()
+
+
+    /*
+    ana hstkhdem el implmentation de releaseImplementation fl release bas
+    */
+    //releaseImplementation()
+
+
+    /*
+    el api() ziaha zai el implementation() ht2oli zay eh asl ana msh faker h2olk eno ynf3 3ade t7out libraries bta3t el junite w libraries ely
+    bt3mel test swa2 kan unit test aw espresso
+
+    ht2oli tyb eh el akhtlaf t3ala 2a2olk .... el gradle ely e7na fe da dlwa2ty khas be ani module h2olk khas b module el app bas w mlosh 3laka b ay modules tania
+    bra el mwdo3
+
+    t3ala b2a 2a2olk el lfr2 ay implementation() mwgoda de fe3ln btmshi zay ma mashi mwdo3 el gradle eno el implementation () de tkhous el app bas
+
+    enma fe mwdo3 el api() la2 enta law 3amel inject le librari bas 3an tare2 el api() msh el implementation() de kda m3naha enk ht3mel inject bas da hysm3 3ala kol ba2et
+     el modules w msh ht7tag t3mlha inject tani fe ay module tani la2no already khalas 7salaha inject 3an tare2 el api()
+    */
+    //api()
+
+}

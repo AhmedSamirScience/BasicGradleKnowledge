@@ -1,0 +1,44 @@
+/**
+ * -> khoud balaak enta hykon fl file da no3en
+ * 1- awl no3 ely howa el plugin management
+ * 2- tani no3 ely howa dependencyResolutionManagement
+ * fe 7aga comment maben el no3en dol w homa el 2 fehom repositories
+ *
+ *
+*/
+
+pluginManagement {
+    repositories {
+        /*
+        khoud balak el repository da wazefto eno law enta 3ayez t7out 7aga aw t-inject library gowa el gradle (ely howa masek kol el modules) yb2a el mfrod eno t7out el source bta3o mn hna
+        y3ni eh el kalam mfhmtsh -> y3ni enta lama t7eb t-inject library el mdfrod t7out el 7agat ely 3yzaha el ibrary 3lshan tsm3 w kman m7tag el mkan ely el library nzlet 3aleha
+        3lshan tsm3 w de b2a hia el 7agat ely btklem 3nha
+         */
+
+        /*
+        khoud balak w de ely leha 3laka bas be ay plugin w ht2oli ani plugin h2olk el plugins ely mktoba fl gradle ely masek kol el modules
+         */
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        //maven { url "https://jitpack.io" } // mknha el 3'alat !!!!!!!!!!!!!!!!!!!
+
+    }
+}
+dependencyResolutionManagement {
+    /*
+    el dependency b2a de khaasa bl dependencies ely mwgoda fl gradle ely masek module el app bas .... ht2oli ezai h2olk eno lama bt3mel implmentation le 7aga howa msh
+    byegy y7out el 7aga w k2ano ely between el quotations de link la2 da zay code aw code id byrou7 ydwar 3aleh fl repositiores ely enta 7ttha hna ely tba3 dependencyResolutionManagement
+    law l2aha bygebha w law ml2haash msh bygbha hy2oli m3lesh edeni examole h2olk el libaries ely mwgoda fl dependencies bydwar 3aleha aw enta 2ayelo dwar 3aleha fl
+    google() w el mavenCentral() bas w law mla2ahomsh hnak yb2a kda hytl3lk error
+
+     */
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" } // mknha el sa7
+    }
+}
+rootProject.name = "Gradle"
+include ':app'
